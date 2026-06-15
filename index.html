@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriveX - Venda de Carros</title>
+    <style>
+        /* Estilos Gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+        }
+
+        /* Cabeçalho */
+        header {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            color: #ff4d4d;
+            font-weight: bold;
+        }
+
+        /* Container Principal */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .titulo-secao {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            color: #222;
+        }
+
+        /* Grid de Carros */
+        .vitrine {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        /* Card do Carro */
+        .carro-card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .carro-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Imagem Provisória (Placeholder) */
+        .carro-img {
+            width: 100%;
+            height: 200px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #666;
+        }
+
+        .carro-info {
+            padding: 20px;
+        }
+
+        .carro-nome {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+        }
+
+        .carro-detalhes {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .carro-preco {
+            font-size: 1.6rem;
+            color: #e60000;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .btn-comprar {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background 0.2s;
+        }
+
+        .btn-comprar:hover {
+            background-color: #ff4d4d;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 5px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>DriveX Motores</h1>
+        <p>Encontre o carro dos seus sonhos aqui</p>
+    </header>
+
+    <div class="container">
+        <h2 class="titulo-secao">Modelos em Destaque</h2>
+        
+        <div class="vitrine">
+            
+            <div class="carro-card">
+                <div class="carro-img">Foto do Esportivo X</div>
+                <div class="carro-info">
+                    <h3 class="carro-nome">Esportivo Nitro X</h3>
+                    <div class="carro-detalhes">
+                        <span>Ano: 2024</span>
+                        <span>KM: 12.000</span>
+                        <span>Câmbio: Auto</span>
+                    </div>
+                    <div class="carro-preco">R$ 185.000</div>
+                    <a href="#" class="btn-comprar">Ver Detalhes</a>
+                </div>
+            </div>
+
+            <div class="carro-card">
+                <div class="carro-img">Foto do SUV Família</div>
+                <div class="carro-info">
+                    <h3 class="carro-nome">SUV Horizon 4x4</h3>
+                    <div class="carro-detalhes">
+                        <span>Ano: 2023</span>
+                        <span>KM: 28.500</span>
+                        <span>Câmbio: Auto</span>
+                    </div>
+                    <div class="carro-preco">R$ 142.000</div>
+                    <a href="#" class="btn-comprar">Ver Detalhes</a>
+                </div>
+            </div>
+
+            <div class="carro-card">
+                <div class="carro-img">Foto do Elétrico E-Tech</div>
+                <div class="carro-info">
+                    <h3 class="carro-nome">E-Tech Volt (Elétrico)</h3>
+                    <div class="carro-detalhes">
+                        <span>Ano: 2025</span>
+                        <span>KM: 0 (Novo)</span>
+                        <span>Câmbio: Auto</span>
+                    </div>
+                    <div class="carro-preco">R$ 210.000</div>
+                    <a href="#" class="btn-comprar">Ver Detalhes</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 DriveX Motores. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
