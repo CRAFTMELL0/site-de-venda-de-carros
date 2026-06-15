@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EXOTIC WEELS- Venda de Carros exsoticos</title>
+    <title>Exotic Wheels - Venda de Carros</title>
     <style>
         /* Estilos Gerais */
         * {
@@ -22,18 +22,22 @@
         header {
             background-color: #1a1a1a;
             color: #fff;
-            padding: 20px;
+            padding: 30px 20px;
             text-align: center;
+            border-bottom: 4px solid #ff4d4d;
         }
 
         header h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
+            letter-spacing: 2px;
             margin-bottom: 5px;
         }
 
         header p {
             color: #ff4d4d;
             font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
         }
 
         /* Container Principal */
@@ -43,6 +47,61 @@
             padding: 0 20px;
         }
 
+        /* Formulário para Adicionar Carros */
+        .painel-cadastro {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+
+        .painel-cadastro h3 {
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            align-items: flex-end;
+        }
+
+        .form-grupo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-grupo label {
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .form-grupo input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .btn-adicionar {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 11px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-adicionar:hover {
+            background-color: #e60000;
+        }
+
         .titulo-secao {
             text-align: center;
             margin-bottom: 30px;
@@ -50,7 +109,7 @@
             color: #222;
         }
 
-        /* Grid de Carros */
+        /* Vitrine de Carros */
         .vitrine {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -70,16 +129,20 @@
             transform: translateY(-5px);
         }
 
-        /* Imagem Provisória (Placeholder) */
         .carro-img {
             width: 100%;
             height: 200px;
-            background-color: #ddd;
+            background-color: #222;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            color: #666;
+            color: #ff4d4d;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            padding: 10px;
+            text-align: center;
         }
 
         .carro-info {
@@ -130,7 +193,7 @@
             color: #fff;
             text-align: center;
             padding: 20px;
-            margin-top: 5px;
+            margin-top: 50px;
             font-size: 0.9rem;
         }
     </style>
@@ -138,53 +201,49 @@
 <body>
 
     <header>
-        <h1>DriveX Motores</h1>
-        <p>Encontre o carro dos seus sonhos aqui</p>
+        <h1>EXOTIC WHEELS</h1>
+        <p>Máquinas exclusivas para quem exige o melhor</p>
     </header>
 
     <div class="container">
-        <h2 class="titulo-secao">Modelos em Destaque</h2>
         
-        <div class="vitrine">
+        <div class="painel-cadastro">
+            <h3>Painel do Administrador: Adicionar Novo Carro</h3>
+            <div class="form-grid">
+                <div class="form-grupo">
+                    <label for="nome">Modelo do Carro:</label>
+                    <input type="text" id="nome" placeholder="Ex: Porsche 911">
+                </div>
+                <div class="form-grupo">
+                    <label for="ano">Ano:</label>
+                    <input type="number" id="ano" placeholder="Ex: 2025">
+                </div>
+                <div class="form-grupo">
+                    <label for="km">KM:</label>
+                    <input type="text" id="km" placeholder="Ex: 5.000 ou Novo">
+                </div>
+                <div class="form-grupo">
+                    <label for="preco">Preço (R$):</label>
+                    <input type="text" id="preco" placeholder="Ex: 850.000">
+                </div>
+                <button class="btn-adicionar" onclick="adicionarCarro()">Adicionar à Vitrine</button>
+            </div>
+        </div>
+
+        <h2 class="titulo-secao">Estoque Disponível</h2>
+        
+        <div class="vitrine" id="vitrine-carros">
             
             <div class="carro-card">
-                <div class="carro-img">Foto do Esportivo X</div>
+                <div class="carro-img">Ferrari F8 Tributo</div>
                 <div class="carro-info">
-                    <h3 class="carro-nome">Esportivo Nitro X</h3>
-                    <div class="carro-detalhes">
-                        <span>Ano: 2024</span>
-                        <span>KM: 12.000</span>
-                        <span>Câmbio: Auto</span>
-                    </div>
-                    <div class="carro-preco">R$ 185.000</div>
-                    <a href="#" class="btn-comprar">Ver Detalhes</a>
-                </div>
-            </div>
-
-            <div class="carro-card">
-                <div class="carro-img">Foto do SUV Família</div>
-                <div class="carro-info">
-                    <h3 class="carro-nome">SUV Horizon 4x4</h3>
+                    <h3 class="carro-nome">Ferrari F8 Tributo</h3>
                     <div class="carro-detalhes">
                         <span>Ano: 2023</span>
-                        <span>KM: 28.500</span>
+                        <span>KM: 3.200</span>
                         <span>Câmbio: Auto</span>
                     </div>
-                    <div class="carro-preco">R$ 142.000</div>
-                    <a href="#" class="btn-comprar">Ver Detalhes</a>
-                </div>
-            </div>
-
-            <div class="carro-card">
-                <div class="carro-img">Foto do Elétrico E-Tech</div>
-                <div class="carro-info">
-                    <h3 class="carro-nome">E-Tech Volt (Elétrico)</h3>
-                    <div class="carro-detalhes">
-                        <span>Ano: 2025</span>
-                        <span>KM: 0 (Novo)</span>
-                        <span>Câmbio: Auto</span>
-                    </div>
-                    <div class="carro-preco">R$ 210.000</div>
+                    <div class="carro-preco">R$ 3.900.000</div>
                     <a href="#" class="btn-comprar">Ver Detalhes</a>
                 </div>
             </div>
@@ -193,8 +252,52 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 EXOTIC WEELS Motores. Todos os direitos reservados.</p>
+        <p>&copy; 2026 Exotic Wheels. Todos os direitos reservados.</p>
     </footer>
 
+    <script>
+        function adicionarCarro() {
+            // Pega os valores digitados nos campos
+            const nome = document.getElementById('nome').value;
+            const ano = document.getElementById('ano').value;
+            const km = document.getElementById('km').value;
+            const preco = document.getElementById('preco').value;
+
+            // Validação simples para não deixar vazio
+            if (!nome || !ano || !km || !preco) {
+                alert("Por favor, preencha todos os campos para adicionar o veículo.");
+                return;
+            }
+
+            // Seleciona a vitrine onde os carros ficam
+            const vitrine = document.getElementById('vitrine-carros');
+
+            // Cria a estrutura HTML do novo card de carro
+            const novoCard = document.createElement('div');
+            novoCard.className = 'carro-card';
+            novoCard.innerHTML = `
+                <div class="carro-img">${nome}</div>
+                <div class="carro-info">
+                    <h3 class="carro-nome">${nome}</h3>
+                    <div class="carro-detalhes">
+                        <span>Ano: ${ano}</span>
+                        <span>KM: ${km}</span>
+                        <span>Câmbio: Auto</span>
+                    </div>
+                    <div class="carro-preco">R$ ${preco}</div>
+                    <a href="#" class="btn-comprar">Ver Detalhes</a>
+                </div>
+            `;
+
+            // Adiciona o novo card na vitrine
+            vitrine.appendChild(novoCard);
+
+            // Limpa os campos do formulário para o próximo cadastro
+            document.getElementById('nome').value = '';
+            document.getElementById('ano').value = '';
+            document.getElementById('km').value = '';
+            document.getElementById('preco').value = '';
+        }
+    </script>
 </body>
 </html>
