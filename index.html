@@ -18,7 +18,6 @@
             color: #c5c6c7;
         }
 
-        /* Cabeçalho */
         header {
             background: linear-gradient(135deg, #1f2833 0%, #0b0c10 100%);
             color: #fff;
@@ -43,14 +42,13 @@
             letter-spacing: 2px;
         }
 
-        /* Container Principal */
         .container {
             max-width: 1200px;
             margin: 40px auto;
             padding: 0 20px;
         }
 
-        /* Painel de Cadastro Avançado */
+        /* Painel de Cadastro */
         .painel-cadastro {
             background-color: #1f2833;
             padding: 30px;
@@ -89,7 +87,7 @@
             text-transform: uppercase;
         }
 
-        .form-grupo input, .form-grupo select {
+        .form-grupo input, .form-grupo select, .form-grupo textarea {
             padding: 12px;
             background-color: #0b0c10;
             border: 1px solid #45f3ff;
@@ -99,7 +97,7 @@
             transition: all 0.3s;
         }
 
-        .form-grupo input:focus, .form-grupo select:focus {
+        .form-grupo input:focus, .form-grupo select:focus, .form-grupo textarea:focus {
             outline: none;
             box-shadow: 0 0 8px #66fcf1;
             border-color: #66fcf1;
@@ -139,7 +137,6 @@
             gap: 30px;
         }
 
-        /* Card do Carro */
         .carro-card {
             background-color: #1f2833;
             border-radius: 10px;
@@ -147,6 +144,8 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.3);
             transition: transform 0.3s, border-color 0.3s;
             border: 1px solid transparent;
+            display: flex;
+            flex-direction: column;
         }
 
         .carro-card:hover {
@@ -154,15 +153,28 @@
             border-color: #66fcf1;
         }
 
-        .carro-img {
+        /* Container da Imagem Corrigido */
+        .container-img {
             width: 100%;
             height: 220px;
-            object-fit: cover;
-            background-color: #0b0c10;
+            background-color: #050508; /* Fundo escuro para preencher espaços sobressalentes */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .carro-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Enquadra a imagem inteira sem cortar ou distorcer */
         }
 
         .carro-info {
             padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
         }
 
         .carro-nome {
@@ -187,6 +199,7 @@
             color: #66fcf1;
             font-weight: bold;
             margin-bottom: 20px;
+            margin-top: auto;
         }
 
         .btn-comprar {
@@ -202,6 +215,7 @@
             border-radius: 6px;
             transition: all 0.3s;
             text-transform: uppercase;
+            cursor: pointer;
         }
 
         .btn-comprar:hover {
@@ -209,7 +223,89 @@
             color: #0b0c10;
         }
 
-        /* Rodapé */
+        /* Modal de Detalhes */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0,0,0,0.85);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-conteudo {
+            background-color: #1f2833;
+            border: 2px solid #66fcf1;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 0 30px rgba(102, 252, 241, 0.3);
+        }
+
+        .fechar-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #45f3ff;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .fechar-modal:hover {
+            color: #fff;
+        }
+
+        .modal-img-container {
+            width: 100%;
+            height: 250px;
+            background-color: #0b0c10;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .modal-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .modal-titulo {
+            color: #fff;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .modal-descricao {
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #c5c6c7;
+        }
+
+        /* Botão de Reset */
+        .btn-reset {
+            background: none;
+            border: 1px solid #ff4d4d;
+            color: #ff4d4d;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        .btn-reset:hover {
+            background: #ff4d4d;
+            color: #fff;
+        }
+
         footer {
             background-color: #1f2833;
             color: #c5c6c7;
@@ -242,7 +338,7 @@
                     <input type="number" id="ano" placeholder="Ex: 2025">
                 </div>
                 <div class="form-grupo">
-                    <label for="km">Quilometragem (KM):</label>
+                    <label for="km">Quilometragem:</label>
                     <input type="text" id="km" placeholder="Ex: 1.200 ou 0KM">
                 </div>
                 <div class="form-grupo">
@@ -261,36 +357,43 @@
                     <label for="imagem">Link da Imagem (URL):</label>
                     <input type="url" id="imagem" placeholder="https://exemplo.com/foto.jpg">
                 </div>
-                <button class="btn-adicionar" onclick="adicionarCarro()">Cadastrar Veículo</button>
             </div>
+            <div class="form-grupo" style="margin-top: 20px;">
+                <label for="descricao">Especificações Técnicas / Detalhes do Carro:</label>
+                <textarea id="descricao" rows="3" placeholder="Descreva os opcionais, motorização, cor interna, etc..."></textarea>
+            </div>
+            <button class="btn-adicionar" style="margin-top: 20px; width: 100%;" onclick="adicionarCarro()">Cadastrar Veículo no Banco</button>
         </div>
 
         <h2 class="titulo-secao">Hypercars em Destaque</h2>
         
-        <div class="vitrine" id="vitrine-carros">
-            
-            <div class="carro-card">
-                <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=600&q=80" alt="Ferrari" class="carro-img">
-                <div class="carro-info">
-                    <h3 class="carro-nome">Ferrari F8 Tributo</h3>
-                    <div class="carro-detalhes">
-                        <span>Ano: 2024</span>
-                        <span>KM: 2.100</span>
-                        <span>Câmbio: Automático</span>
-                    </div>
-                    <div class="carro-preco">R$ 3.900.000</div>
-                    <a href="#" class="btn-comprar">Ver Detalhes</a>
-                </div>
-            </div>
+        <div class="vitrine" id="vitrine-carros"></div>
 
+        <button class="btn-reset" onclick="limparEstoque()">Limpar Todo o Estoque Salvo</button>
+    </div>
+
+    <div id="modalDetalhes" class="modal">
+        <div class="modal-conteudo">
+            <span class="fechar-modal" onclick="fecharModal()">&times;</span>
+            <div class="modal-img-container">
+                <img id="modalImg" src="" alt="" class="modal-img">
+            </div>
+            <h3 id="modalTitulo" class="modal-titulo"></h3>
+            <div id="modalSpecs" class="carro-detalhes"></div>
+            <h4 id="modalPreco" class="carro-preco"></h4>
+            <p id="modalDescricao" class="modal-descricao"></p>
+            <button class="btn-adicionar" style="width: 100%;" onclick="alert('Proposta de compra enviada ao vendedor!')">Iniciar Negociação</button>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Exotic Wheels. Todos os direitos de simulação reservados.</p>
+        <p>&copy; 2026 Exotic Wheels. Dados salvos localmente de forma persistente.</p>
     </footer>
 
     <script>
+        // Carrega os carros salvos assim que a página abre
+        document.addEventListener("DOMContentLoaded", carregarEstoque);
+
         function adicionarCarro() {
             const nome = document.getElementById('nome').value;
             const ano = document.getElementById('ano').value;
@@ -298,44 +401,117 @@
             const cambio = document.getElementById('cambio').value;
             const preco = document.getElementById('preco').value;
             let imagem = document.getElementById('imagem').value;
+            const descricao = document.getElementById('descricao').value || "Nenhuma especificação adicional fornecida.";
 
-            // Validação
             if (!nome || !ano || !km || !preco) {
-                alert("Por favor, preencha as informações principais (Modelo, Ano, KM e Preço).");
+                alert("Por favor, preencha as informações principais.");
                 return;
             }
 
-            // Foto reserva caso o usuário não coloque um link válido de imagem
             if (!imagem) {
                 imagem = "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=600&q=80";
             }
 
-            const vitrine = document.getElementById('vitrine-carros');
+            // Cria o objeto do novo carro
+            const novoCarro = { nome, ano, km, cambio, preco, imagem, descricao };
 
-            const novoCard = document.createElement('div');
-            novoCard.className = 'carro-card';
-            novoCard.innerHTML = `
-                <img src="${imagem}" alt="${nome}" class="carro-img" onerror="this.src='https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=600&q=80'">
-                <div class="carro-info">
-                    <h3 class="carro-nome">${nome}</h3>
-                    <div class="carro-detalhes">
-                        <span>Ano: ${ano}</span>
-                        <span>KM: ${km}</span>
-                        <span>Câmbio: ${cambio}</span>
-                    </div>
-                    <div class="carro-preco">R$ ${preco}</div>
-                    <a href="#" class="btn-comprar">Ver Detalhes</a>
-                </div>
-            `;
+            // Salva no localStorage
+            let estoque = JSON.parse(localStorage.getItem('exotic_wheels_estoque')) || [];
+            estoque.push(novoCarro);
+            localStorage.setItem('exotic_wheels_estoque', JSON.stringify(estoque));
 
-            vitrine.appendChild(novoCard);
+            // Renderiza na tela
+            renderizarCarro(novoCarro);
 
-            // Limpa os campos do painel
+            // Limpa o formulário
             document.getElementById('nome').value = '';
             document.getElementById('ano').value = '';
             document.getElementById('km').value = '';
             document.getElementById('preco').value = '';
             document.getElementById('imagem').value = '';
+            document.getElementById('descricao').value = '';
+        }
+
+        function renderizarCarro(carro) {
+            const vitrine = document.getElementById('vitrine-carros');
+            const card = document.createElement('div');
+            card.className = 'carro-card';
+            
+            // Convertendo o objeto para string segura para usar no botão do Modal
+            const carroDadosString = btoa(unescape(encodeURIComponent(JSON.stringify(carro))));
+
+            card.innerHTML = `
+                <div class="container-img">
+                    <img src="${carro.imagem}" alt="${carro.nome}" class="carro-img" onerror="this.src='https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=600&q=80'">
+                </div>
+                <div class="carro-info">
+                    <h3 class="carro-nome">${carro.nome}</h3>
+                    <div class="carro-detalhes">
+                        <span>Ano: ${carro.ano}</span>
+                        <span>KM: ${carro.km}</span>
+                        <span>${carro.cambio}</span>
+                    </div>
+                    <div class="carro-preco">R$ ${carro.preco}</div>
+                    <button class="btn-comprar" onclick="abrirDetalhes('${carroDadosString}')">Ver Detalhes</button>
+                </div>
+            `;
+            vitrine.appendChild(card);
+        }
+
+        function carregarEstoque() {
+            let estoque = JSON.parse(localStorage.getItem('exotic_wheels_estoque')) || [];
+            
+            // Se o estoque estiver totalmente vazio na primeira execução, coloca um padrão
+            if (estoque.length === 0) {
+                estoque = [{
+                    nome: "Ferrari F8 Tributo",
+                    ano: "2024",
+                    km: "2.100",
+                    cambio: "Automático",
+                    preco: "3.900.000",
+                    imagem: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=600&q=80",
+                    descricao: "Motor 3.9 V8 Twin-Turbo de 720 cv. Vai de 0 a 100 km/h em apenas 2.9 segundos. Interior em couro alcântara preto com costuras vermelhas."
+                }];
+                localStorage.setItem('exotic_wheels_estoque', JSON.stringify(estoque));
+            }
+            
+            estoque.forEach(carro => renderizarCarro(carro));
+        }
+
+        // Funções do Modal de Detalhes
+        function abrirDetalhes(carroCriptografado) {
+            const carroDados = JSON.parse(decodeURIComponent(escape(atob(carroCriptografado))));
+            
+            document.getElementById('modalImg').src = carroDados.imagem;
+            document.getElementById('modalTitulo').innerText = carroDados.nome;
+            document.getElementById('modalPreco').innerText = "R$ " + carroDados.preco;
+            document.getElementById('modalDescricao').innerText = carroDados.descricao;
+            document.getElementById('modalSpecs').innerHTML = `
+                <span>Ano: ${carroDados.ano}</span>
+                <span>KM: ${carroDados.km}</span>
+                <span>Câmbio: ${carroDados.cambio}</span>
+            `;
+
+            document.getElementById('modalDetalhes').style.display = 'flex';
+        }
+
+        function fecharModal() {
+            document.getElementById('modalDetalhes').style.display = 'none';
+        }
+
+        // Fecha o modal se clicar fora da caixinha preta
+        window.onclick = function(event) {
+            const modal = document.getElementById('modalDetalhes');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        function limparEstoque() {
+            if(confirm("Tem certeza que deseja apagar todos os carros cadastrados?")) {
+                localStorage.removeItem('exotic_wheels_estoque');
+                location.reload();
+            }
         }
     </script>
 </body>
