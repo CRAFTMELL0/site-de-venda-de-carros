@@ -14,57 +14,65 @@
         }
 
         body {
-            background-color: #f4f6f9;
-            color: #333;
+            background-color: #0b0c10;
+            color: #c5c6c7;
         }
 
         /* Cabeçalho */
         header {
-            background-color: #1a1a1a;
+            background: linear-gradient(135deg, #1f2833 0%, #0b0c10 100%);
             color: #fff;
-            padding: 30px 20px;
+            padding: 40px 20px;
             text-align: center;
-            border-bottom: 4px solid #ff4d4d;
+            border-bottom: 3px solid #66fcf1;
         }
 
         header h1 {
-            font-size: 2.8rem;
-            letter-spacing: 2px;
+            font-size: 3rem;
+            letter-spacing: 4px;
             margin-bottom: 5px;
+            color: #66fcf1;
+            text-shadow: 0 0 10px rgba(102, 252, 241, 0.3);
         }
 
         header p {
-            color: #ff4d4d;
+            color: #45f3ff;
             font-weight: bold;
             text-transform: uppercase;
             font-size: 0.9rem;
+            letter-spacing: 2px;
         }
 
         /* Container Principal */
         .container {
             max-width: 1200px;
-            margin: 30px auto;
+            margin: 40px auto;
             padding: 0 20px;
         }
 
-        /* Formulário para Adicionar Carros */
+        /* Painel de Cadastro Avançado */
         .painel-cadastro {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            margin-bottom: 40px;
+            background-color: #1f2833;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            margin-bottom: 50px;
+            border: 1px solid #45f3ff;
         }
 
         .painel-cadastro h3 {
-            margin-bottom: 15px;
-            color: #1a1a1a;
+            margin-bottom: 20px;
+            color: #66fcf1;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+            border-bottom: 2px solid #45f3ff;
+            padding-bottom: 10px;
         }
 
         .form-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
             align-items: flex-end;
         }
 
@@ -76,125 +84,140 @@
         .form-grupo label {
             font-size: 0.85rem;
             font-weight: bold;
-            margin-bottom: 5px;
-            color: #555;
+            margin-bottom: 8px;
+            color: #45f3ff;
+            text-transform: uppercase;
         }
 
-        .form-grupo input {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 0.9rem;
+        .form-grupo input, .form-grupo select {
+            padding: 12px;
+            background-color: #0b0c10;
+            border: 1px solid #45f3ff;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            color: #fff;
+            transition: all 0.3s;
+        }
+
+        .form-grupo input:focus, .form-grupo select:focus {
+            outline: none;
+            box-shadow: 0 0 8px #66fcf1;
+            border-color: #66fcf1;
         }
 
         .btn-adicionar {
-            background-color: #ff4d4d;
-            color: white;
+            background: linear-gradient(90deg, #45f3ff, #66fcf1);
+            color: #0b0c10;
             border: none;
-            padding: 11px;
+            padding: 14px;
             font-weight: bold;
-            border-radius: 4px;
+            font-size: 1rem;
+            border-radius: 6px;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .btn-adicionar:hover {
-            background-color: #e60000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 252, 241, 0.4);
         }
 
         .titulo-secao {
             text-align: center;
-            margin-bottom: 30px;
-            font-size: 2rem;
-            color: #222;
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+            color: #fff;
+            letter-spacing: 1px;
         }
 
         /* Vitrine de Carros */
         .vitrine {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
         }
 
         /* Card do Carro */
         .carro-card {
-            background-color: #fff;
-            border-radius: 8px;
+            background-color: #1f2833;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s, border-color 0.3s;
+            border: 1px solid transparent;
         }
 
         .carro-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            border-color: #66fcf1;
         }
 
         .carro-img {
             width: 100%;
-            height: 200px;
-            background-color: #222;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: #ff4d4d;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-            padding: 10px;
-            text-align: center;
+            height: 220px;
+            object-fit: cover;
+            background-color: #0b0c10;
         }
 
         .carro-info {
-            padding: 20px;
+            padding: 25px;
         }
 
         .carro-nome {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-            color: #1a1a1a;
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            color: #fff;
         }
 
         .carro-detalhes {
             font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 15px;
+            color: #c5c6c7;
+            margin-bottom: 20px;
             display: flex;
             justify-content: space-between;
+            background: #0b0c10;
+            padding: 8px 12px;
+            border-radius: 6px;
         }
 
         .carro-preco {
-            font-size: 1.6rem;
-            color: #e60000;
+            font-size: 1.8rem;
+            color: #66fcf1;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .btn-comprar {
             display: block;
             width: 100%;
             text-align: center;
-            background-color: #1a1a1a;
-            color: #fff;
+            background-color: transparent;
+            color: #45f3ff;
+            border: 2px solid #45f3ff;
             padding: 12px;
             text-decoration: none;
             font-weight: bold;
-            border-radius: 5px;
-            transition: background 0.2s;
+            border-radius: 6px;
+            transition: all 0.3s;
+            text-transform: uppercase;
         }
 
         .btn-comprar:hover {
-            background-color: #ff4d4d;
+            background-color: #45f3ff;
+            color: #0b0c10;
         }
 
         /* Rodapé */
         footer {
-            background-color: #1a1a1a;
-            color: #fff;
+            background-color: #1f2833;
+            color: #c5c6c7;
             text-align: center;
-            padding: 20px;
-            margin-top: 50px;
+            padding: 25px;
+            margin-top: 60px;
             font-size: 0.9rem;
+            border-top: 1px solid #45f3ff;
         }
     </style>
 </head>
@@ -202,46 +225,58 @@
 
     <header>
         <h1>EXOTIC WHEELS</h1>
-        <p>Máquinas exclusivas para quem exige o melhor</p>
+        <p>Hypercars & Supercars Performance</p>
     </header>
 
     <div class="container">
         
         <div class="painel-cadastro">
-            <h3>Painel do Administrador: Adicionar Novo Carro</h3>
+            <h3>Gerenciador de Estoque Interno</h3>
             <div class="form-grid">
                 <div class="form-grupo">
                     <label for="nome">Modelo do Carro:</label>
-                    <input type="text" id="nome" placeholder="Ex: Porsche 911">
+                    <input type="text" id="nome" placeholder="Ex: Porsche 911 GT3 RS">
                 </div>
                 <div class="form-grupo">
-                    <label for="ano">Ano:</label>
+                    <label for="ano">Ano Fabricação:</label>
                     <input type="number" id="ano" placeholder="Ex: 2025">
                 </div>
                 <div class="form-grupo">
-                    <label for="km">KM:</label>
-                    <input type="text" id="km" placeholder="Ex: 5.000 ou Novo">
+                    <label for="km">Quilometragem (KM):</label>
+                    <input type="text" id="km" placeholder="Ex: 1.200 ou 0KM">
                 </div>
                 <div class="form-grupo">
-                    <label for="preco">Preço (R$):</label>
-                    <input type="text" id="preco" placeholder="Ex: 850.000">
+                    <label for="cambio">Tipo de Câmbio:</label>
+                    <select id="cambio">
+                        <option value="Automático">Automático</option>
+                        <option value="Manual">Manual</option>
+                        <option value="Sequencial">Sequencial</option>
+                    </select>
                 </div>
-                <button class="btn-adicionar" onclick="adicionarCarro()">Adicionar à Vitrine</button>
+                <div class="form-grupo">
+                    <label for="preco">Preço Final (R$):</label>
+                    <input type="text" id="preco" placeholder="Ex: 1.850.000">
+                </div>
+                <div class="form-grupo">
+                    <label for="imagem">Link da Imagem (URL):</label>
+                    <input type="url" id="imagem" placeholder="https://exemplo.com/foto.jpg">
+                </div>
+                <button class="btn-adicionar" onclick="adicionarCarro()">Cadastrar Veículo</button>
             </div>
         </div>
 
-        <h2 class="titulo-secao">Estoque Disponível</h2>
+        <h2 class="titulo-secao">Hypercars em Destaque</h2>
         
         <div class="vitrine" id="vitrine-carros">
             
             <div class="carro-card">
-                <div class="carro-img">Ferrari F8 Tributo</div>
+                <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=600&q=80" alt="Ferrari" class="carro-img">
                 <div class="carro-info">
                     <h3 class="carro-nome">Ferrari F8 Tributo</h3>
                     <div class="carro-detalhes">
-                        <span>Ano: 2023</span>
-                        <span>KM: 3.200</span>
-                        <span>Câmbio: Auto</span>
+                        <span>Ano: 2024</span>
+                        <span>KM: 2.100</span>
+                        <span>Câmbio: Automático</span>
                     </div>
                     <div class="carro-preco">R$ 3.900.000</div>
                     <a href="#" class="btn-comprar">Ver Detalhes</a>
@@ -252,51 +287,55 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 Exotic Wheels. Todos os direitos reservados.</p>
+        <p>&copy; 2026 Exotic Wheels. Todos os direitos de simulação reservados.</p>
     </footer>
 
     <script>
         function adicionarCarro() {
-            // Pega os valores digitados nos campos
             const nome = document.getElementById('nome').value;
             const ano = document.getElementById('ano').value;
             const km = document.getElementById('km').value;
+            const cambio = document.getElementById('cambio').value;
             const preco = document.getElementById('preco').value;
+            let imagem = document.getElementById('imagem').value;
 
-            // Validação simples para não deixar vazio
+            // Validação
             if (!nome || !ano || !km || !preco) {
-                alert("Por favor, preencha todos os campos para adicionar o veículo.");
+                alert("Por favor, preencha as informações principais (Modelo, Ano, KM e Preço).");
                 return;
             }
 
-            // Seleciona a vitrine onde os carros ficam
+            // Foto reserva caso o usuário não coloque um link válido de imagem
+            if (!imagem) {
+                imagem = "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=600&q=80";
+            }
+
             const vitrine = document.getElementById('vitrine-carros');
 
-            // Cria a estrutura HTML do novo card de carro
             const novoCard = document.createElement('div');
             novoCard.className = 'carro-card';
             novoCard.innerHTML = `
-                <div class="carro-img">${nome}</div>
+                <img src="${imagem}" alt="${nome}" class="carro-img" onerror="this.src='https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=600&q=80'">
                 <div class="carro-info">
                     <h3 class="carro-nome">${nome}</h3>
                     <div class="carro-detalhes">
                         <span>Ano: ${ano}</span>
                         <span>KM: ${km}</span>
-                        <span>Câmbio: Auto</span>
+                        <span>Câmbio: ${cambio}</span>
                     </div>
                     <div class="carro-preco">R$ ${preco}</div>
                     <a href="#" class="btn-comprar">Ver Detalhes</a>
                 </div>
             `;
 
-            // Adiciona o novo card na vitrine
             vitrine.appendChild(novoCard);
 
-            // Limpa os campos do formulário para o próximo cadastro
+            // Limpa os campos do painel
             document.getElementById('nome').value = '';
             document.getElementById('ano').value = '';
             document.getElementById('km').value = '';
             document.getElementById('preco').value = '';
+            document.getElementById('imagem').value = '';
         }
     </script>
 </body>
