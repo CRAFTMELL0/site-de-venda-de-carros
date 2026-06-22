@@ -153,20 +153,19 @@
             border-color: #66fcf1;
         }
 
-        /* SOLUÇÃO DEFINITIVA DO BUG DA IMAGEM: Proporção Widescreen fixa */
+        /* AJUSTE COMPLETO DA IMAGEM */
         .container-img {
             width: 100%;
-            aspect-ratio: 16 / 9; /* Mantém a proporção padrão de fotos de carro */
+            aspect-ratio: 16 / 9; /* Mantém tamanho padrão de tela cheia */
             background-color: #050508;
             overflow: hidden;
-            position: relative;
         }
 
         .carro-img {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Recorta inteligentemente as bordas extras sem achatar o carro */
-            object-position: center; /* Centraliza a imagem no foco */
+            object-fit: cover; /* Faz a foto cobrir o espaço inteiro sem distorcer o carro */
+            object-position: center; /* Mantém o foco no meio da imagem */
             display: block;
         }
 
@@ -183,7 +182,7 @@
             color: #fff;
             white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis; /* Evita que nomes gigantes quebrem o card */
+            text-overflow: ellipsis;
         }
 
         .carro-detalhes {
@@ -293,11 +292,10 @@
             margin-bottom: 20px;
             color: #c5c6c7;
             max-height: 120px;
-            overflow-y: auto; /* Adiciona barra de rolagem se o texto for gigante */
+            overflow-y: auto;
             padding-right: 5px;
         }
 
-        /* Botão de Reset */
         .btn-reset {
             background: none;
             border: 1px solid #ff4d4d;
@@ -368,7 +366,7 @@
             
             <div class="form-grupo" style="margin-top: 20px;">
                 <label for="descricao">Especificações Técnicas / Detalhes do Carro:</label>
-                <textarea id="descricao" rows="3" placeholder="Descreva os opcionais, motorização, cor interna, etc..."></textarea>
+                <textarea id="descricao" rows="3" placeholder="Descreva os opcionais, motorização..."></textarea>
             </div>
             <button class="btn-adicionar" style="margin-top: 20px; width: 100%;" onclick="adicionarCarro()">Cadastrar Veículo no Banco</button>
         </div>
@@ -390,12 +388,12 @@
             <div id="modalSpecs" class="carro-detalhes"></div>
             <h4 id="modalPreco" class="carro-preco"></h4>
             <p id="modalDescricao" class="modal-descricao"></p>
-            <button class="btn-adicionar" style="width: 100%;" onclick="alert('Proposta de compra enviada ao vendedor!')">Iniciar Negociação</button>
+            <button class="btn-adicionar" style="width: 100%;" onclick="alert('Proposta enviada!')">Iniciar Negociação</button>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Exotic Wheels. Dados salvos localmente de forma persistente.</p>
+        <p>&copy; 2026 Exotic Wheels. Dados persistentes.</p>
     </footer>
 
     <script>
@@ -408,10 +406,10 @@
             const cambio = document.getElementById('cambio').value;
             const preco = document.getElementById('preco').value;
             let imagem = document.getElementById('imagem').value;
-            const descricao = document.getElementById('descricao').value || "Nenhuma especificação adicional fornecida.";
+            const descricao = document.getElementById('descricao').value || "Nenhuma especificação fornecida.";
 
             if (!nome || !ano || !km || !preco) {
-                alert("Por favor, preencha as informações principais.");
+                alert("Preencha os campos principais.");
                 return;
             }
 
@@ -471,7 +469,7 @@
                     cambio: "Automático",
                     preco: "3.900.000",
                     imagem: "https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&w=600&q=80",
-                    descricao: "Motor 3.9 V8 Twin-Turbo de 720 cv. Vai de 0 a 100 km/h em apenas 2.9 segundos. Interior em couro alcântara preto com costuras vermelhas."
+                    descricao: "Motor 3.9 V8 Twin-Turbo de 720 cv. Vai de 0 a 100 km/h em apenas 2.9 segundos."
                 }];
                 localStorage.setItem('exotic_wheels_estoque', JSON.stringify(estoque));
             }
@@ -507,7 +505,7 @@
         }
 
         function limparEstoque() {
-            if(confirm("Tem certeza que deseja apagar todos os carros cadastrados?")) {
+            if(confirm("Deseja apagar os carros cadastrados?")) {
                 localStorage.removeItem('exotic_wheels_estoque');
                 location.reload();
             }
