@@ -153,21 +153,21 @@
             border-color: #66fcf1;
         }
 
-        /* Container da Imagem Corrigido */
+        /* SOLUÇÃO DEFINITIVA DO BUG DA IMAGEM: Proporção Widescreen fixa */
         .container-img {
             width: 100%;
-            height: 220px;
-            background-color: #050508; /* Fundo escuro para preencher espaços sobressalentes */
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            aspect-ratio: 16 / 9; /* Mantém a proporção padrão de fotos de carro */
+            background-color: #050508;
             overflow: hidden;
+            position: relative;
         }
 
         .carro-img {
             width: 100%;
             height: 100%;
-            object-fit: contain; /* Enquadra a imagem inteira sem cortar ou distorcer */
+            object-fit: cover; /* Recorta inteligentemente as bordas extras sem achatar o carro */
+            object-position: center; /* Centraliza a imagem no foco */
+            display: block;
         }
 
         .carro-info {
@@ -178,9 +178,12 @@
         }
 
         .carro-nome {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             margin-bottom: 12px;
             color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis; /* Evita que nomes gigantes quebrem o card */
         }
 
         .carro-detalhes {
@@ -195,7 +198,7 @@
         }
 
         .carro-preco {
-            font-size: 1.8rem;
+            font-size: 1.7rem;
             color: #66fcf1;
             font-weight: bold;
             margin-bottom: 20px;
@@ -265,7 +268,7 @@
 
         .modal-img-container {
             width: 100%;
-            height: 250px;
+            aspect-ratio: 16 / 9;
             background-color: #0b0c10;
             margin-bottom: 20px;
             border-radius: 6px;
@@ -275,7 +278,8 @@
         .modal-img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
+            object-position: center;
         }
 
         .modal-titulo {
@@ -288,6 +292,9 @@
             line-height: 1.6;
             margin-bottom: 20px;
             color: #c5c6c7;
+            max-height: 120px;
+            overflow-y: auto; /* Adiciona barra de rolagem se o texto for gigante */
+            padding-right: 5px;
         }
 
         /* Botão de Reset */
@@ -358,6 +365,7 @@
                     <input type="url" id="imagem" placeholder="https://exemplo.com/foto.jpg">
                 </div>
             </div>
+            
             <div class="form-grupo" style="margin-top: 20px;">
                 <label for="descricao">Especificações Técnicas / Detalhes do Carro:</label>
                 <textarea id="descricao" rows="3" placeholder="Descreva os opcionais, motorização, cor interna, etc..."></textarea>
@@ -391,7 +399,6 @@
     </footer>
 
     <script>
-        // Carrega os carros salvos assim que a página abre
         document.addEventListener("DOMContentLoaded", carregarEstoque);
 
         function adicionarCarro() {
@@ -412,18 +419,14 @@
                 imagem = "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=600&q=80";
             }
 
-            // Cria o objeto do novo carro
             const novoCarro = { nome, ano, km, cambio, preco, imagem, descricao };
 
-            // Salva no localStorage
             let estoque = JSON.parse(localStorage.getItem('exotic_wheels_estoque')) || [];
             estoque.push(novoCarro);
             localStorage.setItem('exotic_wheels_estoque', JSON.stringify(estoque));
 
-            // Renderiza na tela
             renderizarCarro(novoCarro);
 
-            // Limpa o formulário
             document.getElementById('nome').value = '';
             document.getElementById('ano').value = '';
             document.getElementById('km').value = '';
@@ -437,7 +440,6 @@
             const card = document.createElement('div');
             card.className = 'carro-card';
             
-            // Convertendo o objeto para string segura para usar no botão do Modal
             const carroDadosString = btoa(unescape(encodeURIComponent(JSON.stringify(carro))));
 
             card.innerHTML = `
@@ -461,7 +463,6 @@
         function carregarEstoque() {
             let estoque = JSON.parse(localStorage.getItem('exotic_wheels_estoque')) || [];
             
-            // Se o estoque estiver totalmente vazio na primeira execução, coloca um padrão
             if (estoque.length === 0) {
                 estoque = [{
                     nome: "Ferrari F8 Tributo",
@@ -478,7 +479,6 @@
             estoque.forEach(carro => renderizarCarro(carro));
         }
 
-        // Funções do Modal de Detalhes
         function abrirDetalhes(carroCriptografado) {
             const carroDados = JSON.parse(decodeURIComponent(escape(atob(carroCriptografado))));
             
@@ -499,7 +499,6 @@
             document.getElementById('modalDetalhes').style.display = 'none';
         }
 
-        // Fecha o modal se clicar fora da caixinha preta
         window.onclick = function(event) {
             const modal = document.getElementById('modalDetalhes');
             if (event.target == modal) {
